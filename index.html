@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can You Run It? A Complete Guide to PC Game Requirements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F1420;
+    --panel:#161C2B;
+    --panel-2:#1A2133;
+    --line:#262E42;
+    --text:#E7EAF1;
+    --text-dim:#8891A3;
+    --lime:#9FEF5B;
+    --lime-dim:#4F7A34;
+    --blue:#5B9BF2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{font-family:'Sora',sans-serif;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:var(--lime);text-decoration:none;border-bottom:1px solid rgba(159,239,91,0.35);transition:border-color .2s ease;}
+  a:hover{border-color:var(--lime);}
+  a.blue-link{color:var(--blue);border-bottom-color:rgba(91,155,242,0.4);}
+  a.blue-link:hover{border-color:var(--blue);}
+  img,svg{max-width:100%;display:block;}
+
+  /* ---------- Header ---------- */
+  header{
+    width:100%;
+    padding:20px 6vw;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    background:rgba(15,20,32,0.9);
+    backdrop-filter:blur(8px);
+    z-index:20;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:1.1rem;
+    font-weight:600;
+    color:var(--text);
+    white-space:nowrap;
+  }
+  .brand-mark{
+    width:20px;height:20px;
+    border:2px solid var(--lime);
+    border-radius:5px;
+    position:relative;
+    flex-shrink:0;
+  }
+  .brand-mark::after{
+    content:"";
+    position:absolute;
+    top:4px;left:3px;
+    width:9px;height:5px;
+    border-left:2px solid var(--lime);
+    border-bottom:2px solid var(--lime);
+    transform:rotate(-45deg);
+  }
+  nav{display:flex;gap:clamp(14px,3vw,30px);font-size:.9rem;}
+  nav a{color:var(--text-dim);border-bottom:none;}
+  nav a:hover{color:var(--text);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    width:100%;
+    padding:clamp(56px,9vw,100px) 6vw clamp(46px,7vw,80px);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-inner{max-width:780px;position:relative;z-index:1;}
+  .hero h1{
+    font-size:clamp(2rem,4.4vw,3.2rem);
+    font-weight:600;
+    letter-spacing:-0.01em;
+    line-height:1.14;
+    margin-bottom:20px;
+  }
+  .hero p{
+    font-size:1.06rem;
+    color:var(--text-dim);
+    max-width:640px;
+  }
+  .hero p a{font-weight:500;}
+
+  .scan-panel{
+    margin-top:38px;
+    max-width:460px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px 20px;
+    position:relative;
+    overflow:hidden;
+  }
+  .scan-panel::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--lime),transparent);
+    animation:scan 3.2s linear infinite;
+  }
+  @keyframes scan{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(140px);}
+  }
+  .scan-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:7px 0;
+    font-size:.84rem;
+  }
+  .scan-row + .scan-row{border-top:1px solid var(--line);}
+  .scan-row .part{color:var(--text-dim);}
+  .scan-row .status{color:var(--lime);font-weight:500;}
+
+  /* ---------- Content ---------- */
+  main{width:100%;display:flex;justify-content:center;padding:0 6vw 40px;}
+  .content{width:100%;max-width:720px;padding-top:60px;}
+  section{padding-bottom:50px;}
+  section h2{font-size:1.5rem;font-weight:600;margin-bottom:18px;letter-spacing:-0.005em;}
+  section h3{font-size:1.1rem;font-weight:600;margin:24px 0 10px;}
+  section p{margin-bottom:16px;}
+  section p.dim{color:var(--text-dim);}
+
+  .divider{display:flex;align-items:center;gap:6px;margin:0 0 44px;}
+  .divider .seg{height:1px;flex:1;background:var(--line);}
+  .divider .dot{width:5px;height:5px;background:var(--lime-dim);border-radius:50%;}
+
+  ul.plain{list-style:none;margin:14px 0 20px;}
+  ul.plain li{position:relative;padding-left:22px;margin-bottom:10px;}
+  ul.plain li::before{
+    content:"";
+    position:absolute;left:0;top:9px;
+    width:9px;height:9px;
+    border:1.5px solid var(--lime);
+    border-radius:2px;
+  }
+
+  ol.steps{counter-reset:step;list-style:none;margin:18px 0 10px;}
+  ol.steps li{
+    counter-increment:step;
+    position:relative;
+    padding:12px 0 12px 42px;
+    border-bottom:1px solid var(--line);
+  }
+  ol.steps li:first-child{border-top:1px solid var(--line);}
+  ol.steps li::before{
+    content:counter(step);
+    position:absolute;left:0;top:10px;
+    width:24px;height:24px;
+    border-radius:6px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    color:var(--lime);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.78rem;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  /* Spec table */
+  .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:20px 0 8px;}
+  table{width:100%;border-collapse:collapse;min-width:560px;}
+  th,td{text-align:left;padding:14px 18px;font-size:.92rem;}
+  thead th{background:var(--panel-2);color:var(--text-dim);font-weight:500;font-size:.8rem;border-bottom:1px solid var(--line);}
+  tbody tr{border-bottom:1px solid var(--line);}
+  tbody tr:last-child{border-bottom:none;}
+  tbody td:first-child{color:var(--lime);font-weight:500;font-family:'IBM Plex Mono',monospace;font-size:.85rem;}
+  tbody td:nth-child(3){color:var(--text-dim);}
+
+  /* Min vs Rec comparison */
+  .vs-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin:22px 0 10px;
+  }
+  .vs-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:20px;
+  }
+  .vs-card .tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:.72rem;
+    color:var(--text-dim);
+    margin-bottom:8px;
+  }
+  .vs-card.rec{border-color:rgba(159,239,91,0.3);}
+  .vs-card.rec .tag{color:var(--lime);}
+  .vs-card p{font-size:.9rem;color:var(--text-dim);margin-bottom:0;}
+  @media(max-width:560px){.vs-wrap{grid-template-columns:1fr;}}
+
+  .callout{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--blue);
+    border-radius:8px;
+    padding:18px 22px;
+    margin:22px 0;
+    color:var(--text-dim);
+    font-size:.95rem;
+  }
+  .callout strong{color:var(--text);}
+
+  /* FAQ */
+  details{border-bottom:1px solid var(--line);padding:18px 0;}
+  details:first-of-type{border-top:1px solid var(--line);}
+  summary{
+    cursor:pointer;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;
+    font-weight:500;color:var(--text);font-size:1rem;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{
+    content:"+";font-size:1.3rem;color:var(--lime);
+    transition:transform .2s ease;flex-shrink:0;margin-left:16px;
+  }
+  details[open] summary::after{transform:rotate(45deg);}
+  details p{margin-top:12px;color:var(--text-dim);font-size:.94rem;}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:44px 6vw 36px;width:100%;}
+  .footer-inner{
+    max-width:1000px;margin:0 auto;
+    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;
+  }
+  .footer-brand{font-family:'Sora',sans-serif;font-weight:600;color:var(--text);}
+  .footer-tag{color:var(--text-dim);font-size:.88rem;margin-top:4px;}
+  .social-links{display:flex;gap:16px;}
+  .social-links a{
+    border:1px solid var(--line);width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--text-dim);
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .social-links a:hover{color:var(--lime);border-color:var(--lime);}
+  .footer-bottom{
+    max-width:1000px;margin:28px auto 0;padding-top:20px;
+    border-top:1px solid var(--line);color:var(--text-dim);font-size:.82rem;text-align:center;
+  }
+
+  @media(max-width:640px){
+    header{padding:16px 5vw;}
+    nav{gap:12px;font-size:.82rem;}
+    .footer-inner{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="brand-mark"></span>
+    Can You Run It
+  </div>
+  <nav>
+    <a href="#specs">Specs</a>
+    <a href="#requirements">Requirements</a>
+    <a href="#checklist">Checklist</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Can You Run It? A Complete Guide to PC Game Requirements</h1>
+    <p>
+      Before installing a new PC game, running a quick
+      <a href="https://checkcanirunit.com/" target="_blank" rel="noopener">Can You Run It</a>
+      check is one of the most useful things you can do. It tells you whether your processor, graphics card,
+      memory, and storage can actually handle the title — instead of finding out after a long download and a
+      disappointing first launch.
+    </p>
+    <div class="scan-panel">
+      <div class="scan-row"><span class="part mono">CPU</span><span class="status mono">Meets minimum</span></div>
+      <div class="scan-row"><span class="part mono">GPU</span><span class="status mono">Meets recommended</span></div>
+      <div class="scan-row"><span class="part mono">RAM</span><span class="status mono">16 GB available</span></div>
+      <div class="scan-row"><span class="part mono">Storage</span><span class="status mono">Sufficient</span></div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="content">
+
+    <section id="specs">
+      <h2>What "Can You Run It" actually checks</h2>
+      <p>At its core, this is the process of comparing your PC's hardware and software against the specifications a game's developer publishes — typically the CPU, GPU, RAM, operating system, and available storage.</p>
+      <p>Compatibility isn't just about whether a game opens. A system can technically launch a title while delivering low FPS or forcing you down to the lowest graphics settings. It's more useful to think in terms of both compatibility and expected performance, not a simple pass-or-fail answer.</p>
+
+      <h3>Why check before you install</h3>
+      <p>Large modern games take real time to download and real space to store. Finding out your PC can't handle a title after that process is finished wastes both. A quick check up front tells you whether to go ahead, adjust your expectations, or hold off on an upgrade decision — especially useful for newly released titles with demanding visuals or large open worlds.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Component</th><th>What it controls</th><th>Why it matters</th></tr></thead>
+          <tbody>
+            <tr><td>CPU</td><td>Game calculations</td><td>Logic, physics, AI, overall performance</td></tr>
+            <tr><td>GPU</td><td>Graphics rendering</td><td>FPS, resolution, textures, effects</td></tr>
+            <tr><td>RAM</td><td>Temporary memory</td><td>Smooth operation alongside the OS</td></tr>
+            <tr><td>VRAM</td><td>Graphics memory</td><td>Textures, resolution, visual assets</td></tr>
+            <tr><td>Storage</td><td>Install space</td><td>Whether the game fits; affects load times</td></tr>
+            <tr><td>OS</td><td>Software environment</td><td>Some titles require specific versions</td></tr>
+            <tr><td>Drivers</td><td>Hardware↔software link</td><td>Compatibility, stability, performance</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="divider"><span class="seg"></span><span class="dot"></span><span class="seg"></span></div>
+
+    <section id="requirements">
+      <h2>Minimum vs. recommended — what the difference means</h2>
+      <p>Most games publish two tiers of requirements, and they answer different questions.</p>
+      <div class="vs-wrap">
+        <div class="vs-card">
+          <div class="tag mono">MINIMUM</div>
+          <p>The baseline a developer expects to launch the game, often at lower settings or reduced resolution. It's a starting point for compatibility, not a promise of smooth gameplay.</p>
+        </div>
+        <div class="vs-card rec">
+          <div class="tag mono">RECOMMENDED</div>
+          <p>More performance headroom, usually enough for higher settings and steadier frame rates. Even this doesn't guarantee maximum performance — drivers, optimization, and background load still play a role.</p>
+        </div>
+      </div>
+
+      <h3>The CPU's role</h3>
+      <p>Your processor handles AI, physics, world simulation, and plenty of background tasks — it tends to matter most in strategy games, simulations, multiplayer titles, and large interactive worlds. When comparing processors, look at the exact model and generation rather than clock speed or core count alone; newer architectures can perform very differently at similar numbers.</p>
+
+      <h3>Why the graphics card matters</h3>
+      <p>For visually demanding games, the GPU is usually the component doing the heaviest lifting — rendering textures, shadows, lighting, and environments. If it falls below the game's requirement, performance can drop noticeably. VRAM matters here too: if it's limited, lowering texture quality is often the quickest way to relieve the pressure. A
+        <a href="https://checkcanirunit.com/" class="blue-link" target="_blank" rel="noopener">quick compatibility check</a>
+        against your specific GPU model is usually faster than guessing from the box specs alone.
+      </p>
+
+      <h3>RAM, without the myths</h3>
+      <p>RAM is temporary workspace — not enough of it leads to stuttering, slowdowns, and crashes, especially with other programs open in the background. But more isn't automatically better: once a system has enough for the game and normal background activity, the GPU or CPU usually becomes the real limiting factor.</p>
+
+      <h3>Storage and SSDs</h3>
+      <p>A game simply won't install without enough free space, and modern titles grow further with patches and DLC — check both the required space and what you actually have free beforehand. An SSD won't raise your frame rate on its own, but it does cut load times and makes the overall experience noticeably more responsive.</p>
+    </section>
+
+    <div class="divider"><span class="seg"></span><span class="dot"></span><span class="seg"></span></div>
+
+    <section>
+      <h2>Resolution and FPS: the other half of the equation</h2>
+      <p>The resolution you choose directly changes how much work your GPU has to do. At 1080p, it's rendering meaningfully fewer pixels than at 1440p or 4K — which is why the same PC can feel smooth at one resolution and struggle at another. Your target resolution belongs in the compatibility question just as much as your hardware does.</p>
+      <p class="dim">FPS priorities also differ by genre. Competitive titles tend to benefit from high, stable frame rates and high-refresh displays, while slower single-player games are often comfortable at lower numbers. There's no universal "ideal" FPS — what matters is whether performance stays stable for the kind of game you're playing.</p>
+    </section>
+
+    <section id="checklist">
+      <h2>How to check your PC before you play</h2>
+      <ol class="steps">
+        <li>Find your exact processor model.</li>
+        <li>Identify your graphics card.</li>
+        <li>Check how much RAM is installed.</li>
+        <li>Look at your GPU's available VRAM.</li>
+        <li>Confirm your operating system version.</li>
+        <li>Check how much free storage remains.</li>
+        <li>Compare your specs against the game's minimum requirements.</li>
+        <li>Compare them again against the recommended requirements.</li>
+        <li>Factor in your target resolution and FPS goals.</li>
+        <li>Make sure your graphics and chipset drivers are current.</li>
+      </ol>
+    </section>
+
+    <div class="divider"><span class="seg"></span><span class="dot"></span><span class="seg"></span></div>
+
+    <section>
+      <h2>Below recommended? You still have options</h2>
+      <p>Falling short of recommended specs doesn't automatically rule a game out. If you meet the minimum, lowering graphics quality and resolution often recovers meaningful performance — shadows, reflections, lighting effects, and view distance tend to have an outsized impact for the frames they cost. Closing background applications and updating your graphics driver can help too. If performance still disappoints after that, you're likely looking at a hardware limit that software settings can't fully solve.</p>
+
+      <h3>When specs match but performance doesn't</h3>
+      <p>Sometimes a PC that appears to meet requirements still underperforms. Outdated drivers, overheating during long sessions, background programs eating CPU or RAM, and games that are simply optimized differently than their published specs suggest can all be the cause. Laptop owners should also keep in mind that mobile components can behave quite differently from desktop parts carrying a similar name.</p>
+
+      <div class="callout">
+        <strong>Thinking about an upgrade?</strong> Identify the actual bottleneck first — a stronger GPU helps graphics-heavy games, a faster CPU helps processor-intensive ones, and more RAM only helps if your current amount is genuinely insufficient. A targeted upgrade usually beats replacing everything at once.
+      </div>
+    </section>
+
+    <section>
+      <h2>Beyond a simple yes or no</h2>
+      <p>The honest answer to "Can You Run It?" is rarely binary. Your PC might launch a game at low settings, run it comfortably at 1080p, or handle it at high settings and higher resolutions — three very different experiences from the same question. That's why comparing your system against both minimum and recommended specs tells you far more than a single compatibility verdict ever could.</p>
+    </section>
+
+    <section id="faq">
+      <h2>Frequently asked questions</h2>
+
+      <details open>
+        <summary>How can I tell if my PC can run a game?</summary>
+        <p>Find your CPU, GPU, RAM, storage, operating system, and VRAM, then compare them against the game's published requirements.</p>
+      </details>
+      <details>
+        <summary>Are minimum requirements enough for gaming?</summary>
+        <p>They generally indicate basic compatibility. Expect to use lower graphics settings or resolution, and performance that isn't as smooth as on recommended hardware.</p>
+      </details>
+      <details>
+        <summary>What matters more, CPU or GPU?</summary>
+        <p>Both matter, but the GPU usually has the bigger influence on graphics quality and FPS. The CPU becomes more important in processor-heavy games.</p>
+      </details>
+      <details>
+        <summary>Can I run a game without a dedicated graphics card?</summary>
+        <p>Some lighter or older titles run fine on integrated graphics. More demanding modern games generally need a dedicated GPU.</p>
+      </details>
+      <details>
+        <summary>Does more RAM make games faster?</summary>
+        <p>It helps when your current amount is insufficient. Once you have enough, adding more usually won't meaningfully improve FPS.</p>
+      </details>
+      <details>
+        <summary>Why is my FPS low even though I meet the requirements?</summary>
+        <p>Common causes include demanding settings, high resolution, outdated drivers, overheating, background applications, limited VRAM, or a poorly optimized game.</p>
+      </details>
+      <details>
+        <summary>Does an SSD improve gaming?</summary>
+        <p>It speeds up load times and general responsiveness, but it doesn't necessarily produce a major FPS increase.</p>
+      </details>
+      <details>
+        <summary>Should I upgrade if my PC can't run a new game?</summary>
+        <p>If multiple modern games struggle, it may be worthwhile — but identify whether the CPU, GPU, RAM, or another component is the actual bottleneck first.</p>
+      </details>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Can You Run It</div>
+      <div class="footer-tag">Check your specs before you hit install.</div>
+    </div>
+    <div class="social-links">
+      <a href="#" aria-label="Twitter / X" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 4.01c-.94.55-1.96.94-3.04 1.15a4.28 4.28 0 0 0-7.29 3.9A12.13 12.13 0 0 1 3.03 3.9a4.28 4.28 0 0 0 1.33 5.71 4.24 4.24 0 0 1-1.94-.54v.05a4.28 4.28 0 0 0 3.43 4.2 4.3 4.3 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98A8.58 8.58 0 0 1 2 18.57a12.1 12.1 0 0 0 6.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19 0-.37-.01-.56A8.7 8.7 0 0 0 22 4.01z"/></svg>
+      </a>
+      <a href="#" aria-label="YouTube" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12.3c0-2.1-.17-3.4-.5-4.2-.3-.75-.9-1.35-1.65-1.65C18.9 6 12 6 12 6s-6.9 0-7.85.45c-.75.3-1.35.9-1.65 1.65-.33.8-.5 2.1-.5 4.2s.17 3.4.5 4.2c.3.75.9 1.35 1.65 1.65C4.1 18.6 12 18.6 12 18.6s6.9 0 7.85-.45c.75-.3 1.35-.9 1.65-1.65.33-.8.5-2.1.5-4.2z"/><path d="M10 9.5l5 2.8-5 2.8z"/></svg>
+      </a>
+      <a href="#" aria-label="Discord" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="7" width="16" height="11" rx="4"/><circle cx="9" cy="12.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="12.5" r="1.2" fill="currentColor" stroke="none"/><path d="M8 7l1-2.5h6L16 7"/></svg>
+      </a>
+      <a href="#" aria-label="GitHub" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2-.2 4.5-1 4.5-4.5a3.5 3.5 0 0 0-1-2.5 3.2 3.2 0 0 0-.1-2.5s-.9-.3-3 1a10.3 10.3 0 0 0-5.8 0c-2.1-1.3-3-1-3-1a3.2 3.2 0 0 0-.1 2.5 3.5 3.5 0 0 0-1 2.5c0 3.5 2.5 4.3 4.5 4.5-.6.6-.6 1.2-.5 2V19"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Can You Run It. Independent compatibility guide, not affiliated with any game publisher.</div>
+</footer>
+
+</body>
+</html>
